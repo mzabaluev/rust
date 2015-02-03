@@ -325,7 +325,7 @@ pub fn get_address_name(addr: IpAddr) -> Result<String, IoError> {
     }
 
     unsafe {
-        Ok(str::from_utf8(ffi::c_str_to_bytes(&hostbuf.as_ptr()))
+        Ok(str::from_utf8(ffi::c_str_to_bytes(hostbuf.as_ptr()))
                .unwrap().to_string())
     }
 }

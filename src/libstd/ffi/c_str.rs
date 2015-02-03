@@ -132,13 +132,14 @@ impl fmt::Debug for CString {
 /// will then return a corresponding slice for the contents of the C string not
 /// including the nul terminator.
 ///
-/// This function will tie the lifetime of the returned slice to the lifetime of
-/// the pointer provided. This is done to help prevent the slice from escaping
-/// the lifetime of the pointer itself. If a longer lifetime is needed, then
-/// `mem::copy_lifetime` should be used.
+/// The lifetime of the returned slice is inferred from its usage in the
+/// call context. See the documentation on `std::slice::from_raw_parts`
+/// for possible pitfalls and suggested ways to mitigate them.
 ///
-/// This function is unsafe because there is no guarantee of the validity of the
-/// pointer `raw` or a guarantee that a nul terminator will be found.
+/// This function is unsafe because there is no guarantee of the validity of
+/// the pointer `raw` or a guarantee that a nul terminator will be found.
+/// There is also no guarantee whether the lifetime inferred is a suitable
+/// lifetime for the returned slice.
 ///
 /// # Example
 ///
@@ -155,23 +156,23 @@ impl fmt::Debug for CString {
 ///
 /// unsafe {
 ///     let to_print = my_string();
-///     let slice = ffi::c_str_to_bytes(&to_print);
+///     let slice = ffi::c_str_to_bytes(to_print);
 ///     println!("string returned: {}", str::from_utf8(slice).unwrap());
 /// }
 /// # }
 /// ```
-pub unsafe fn c_str_to_bytes<'a>(raw: &'a *const libc::c_char) -> &'a [u8] {
-    let len = libc::strlen(*raw);
-    slice::from_raw_parts(*(raw as *const _ as *const *const u8), len as usize)
+pub unsafe fn c_str_to_bytes<'a>(raw: *const libc::c_char) -> &'a [u8] {
+    let len = libc::strlen(raw);
+    slice::from_raw_parts(raw as *const u8, len as usize)
 }
 
 /// Interpret a C string as a byte slice with the nul terminator.
 ///
-/// This function is identical to `from_raw_buf` except that the returned slice
+/// This function is identical to `c_str_to_bytes` except that the returned slice
 /// will include the nul terminator of the string.
-pub unsafe fn c_str_to_bytes_with_nul<'a>(raw: &'a *const libc::c_char) -> &'a [u8] {
-    let len = libc::strlen(*raw) + 1;
-    slice::from_raw_parts(*(raw as *const _ as *const *const u8), len as usize)
+pub unsafe fn c_str_to_bytes_with_nul<'a>(raw: *const libc::c_char) -> &'a [u8] {
+    let len = libc::strlen(raw) + 1;
+    slice::from_raw_parts(raw as *const u8, len as usize)
 }
 
 #[cfg(test)]
@@ -186,8 +187,8 @@ mod tests {
         let data = b"123\0";
         let ptr = data.as_ptr() as *const libc::c_char;
         unsafe {
-            assert_eq!(c_str_to_bytes(&ptr), b"123");
-            assert_eq!(c_str_to_bytes_with_nul(&ptr), b"123\0");
+            assert_eq!(c_str_to_bytes(ptr), b"123");
+            assert_eq!(c_str_to_bytes_with_nul(ptr), b"123\0");
         }
     }
 

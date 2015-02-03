@@ -3040,7 +3040,7 @@ fn internalize_symbols(cx: &SharedCrateContext, reachable: &HashSet<String>) {
                     continue
                 }
 
-                let name = ffi::c_str_to_bytes(&llvm::LLVMGetValueName(val))
+                let name = ffi::c_str_to_bytes(llvm::LLVMGetValueName(val))
                                .to_vec();
                 declared.insert(name);
             }
@@ -3057,7 +3057,7 @@ fn internalize_symbols(cx: &SharedCrateContext, reachable: &HashSet<String>) {
                     continue
                 }
 
-                let name = ffi::c_str_to_bytes(&llvm::LLVMGetValueName(val))
+                let name = ffi::c_str_to_bytes(llvm::LLVMGetValueName(val))
                                .to_vec();
                 if !declared.contains(&name) &&
                    !reachable.contains(str::from_utf8(name.as_slice()).unwrap()) {

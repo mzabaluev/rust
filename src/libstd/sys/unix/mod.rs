@@ -85,7 +85,7 @@ pub fn last_gai_error(s: libc::c_int) -> IoError {
 
     let mut err = decode_error(s);
     err.detail = Some(unsafe {
-        str::from_utf8(ffi::c_str_to_bytes(&gai_strerror(s))).unwrap().to_string()
+        str::from_utf8(ffi::c_str_to_bytes(gai_strerror(s))).unwrap().to_string()
     });
     err
 }

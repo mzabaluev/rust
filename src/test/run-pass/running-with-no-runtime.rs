@@ -38,7 +38,7 @@ fn start(argc: int, argv: *const *const u8) -> int {
     let args = unsafe {
         (0..argc as uint).map(|i| {
             let ptr = *argv.offset(i as int) as *const _;
-            ffi::c_str_to_bytes(&ptr).to_vec()
+            ffi::c_str_to_bytes(ptr).to_vec()
         }).collect::<Vec<_>>()
     };
     let me = args[0].as_slice();

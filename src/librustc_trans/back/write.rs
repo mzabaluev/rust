@@ -49,7 +49,7 @@ pub fn llvm_err(handler: &diagnostic::Handler, msg: String) -> ! {
         if cstr == ptr::null() {
             handler.fatal(&msg[]);
         } else {
-            let err = ffi::c_str_to_bytes(&cstr);
+            let err = ffi::c_str_to_bytes(cstr);
             let err = String::from_utf8_lossy(err.as_slice()).to_string();
             libc::free(cstr as *mut _);
             handler.fatal(&format!("{}: {}",
@@ -380,7 +380,7 @@ unsafe extern "C" fn diagnostic_handler(info: DiagnosticInfoRef, user: *mut c_vo
         }
 
         llvm::diagnostic::Optimization(opt) => {
-            let pass_name = str::from_utf8(ffi::c_str_to_bytes(&opt.pass_name))
+            let pass_name = str::from_utf8(ffi::c_str_to_bytes(opt.pass_name))
                                 .ok()
                                 .expect("got a non-UTF8 pass name from LLVM");
             let enabled = match cgcx.remark {

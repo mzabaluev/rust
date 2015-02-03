@@ -563,7 +563,7 @@ unsafe fn load_argc_and_argv(argc: int,
     use iter::range;
 
     (0..argc as uint).map(|i| {
-        ffi::c_str_to_bytes(&*argv.offset(i as int)).to_vec()
+        ffi::c_str_to_bytes(*argv.offset(i as int)).to_vec()
     }).collect()
 }
 
@@ -628,7 +628,7 @@ fn real_args_as_bytes() -> Vec<Vec<u8>> {
             let tmp = objc_msgSend(args, objectAtSel, i);
             let utf_c_str: *const libc::c_char =
                 mem::transmute(objc_msgSend(tmp, utf8Sel));
-            res.push(c_str_to_bytes(&utf_c_str).to_vec());
+            res.push(c_str_to_bytes(utf_c_str).to_vec());
         }
     }
 

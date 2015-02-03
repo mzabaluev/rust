@@ -232,7 +232,7 @@ mod dl {
             let ret = if ptr::null() == last_error {
                 Ok(result)
             } else {
-                let s = ffi::c_str_to_bytes(&last_error);
+                let s = ffi::c_str_to_bytes(last_error);
                 Err(str::from_utf8(s).unwrap().to_string())
             };
 

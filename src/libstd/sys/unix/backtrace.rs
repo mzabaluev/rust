@@ -233,7 +233,7 @@ fn print(w: &mut Writer, idx: int, addr: *mut libc::c_void) -> IoResult<()> {
         output(w, idx,addr, None)
     } else {
         output(w, idx, addr, Some(unsafe {
-            ffi::c_str_to_bytes(&info.dli_sname)
+            ffi::c_str_to_bytes(info.dli_sname)
         }))
     }
 }
@@ -364,7 +364,7 @@ fn print(w: &mut Writer, idx: int, addr: *mut libc::c_void) -> IoResult<()> {
     if ret == 0 || data.is_null() {
         output(w, idx, addr, None)
     } else {
-        output(w, idx, addr, Some(unsafe { ffi::c_str_to_bytes(&data) }))
+        output(w, idx, addr, Some(unsafe { ffi::c_str_to_bytes(data) }))
     }
 }
 
