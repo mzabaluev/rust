@@ -61,6 +61,7 @@ pub fn decode_error_kind(errno: i32) -> ErrorKind {
         libc::ENOENT => ErrorKind::NotFound,
         libc::EINTR => ErrorKind::Interrupted,
         libc::EINVAL => ErrorKind::InvalidInput,
+        libc::EILSEQ => ErrorKind::InvalidData,
         libc::ETIMEDOUT => ErrorKind::TimedOut,
         libc::consts::os::posix88::EEXIST => ErrorKind::AlreadyExists,
 
