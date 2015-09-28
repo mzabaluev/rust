@@ -3526,7 +3526,7 @@ pub mod consts {
         }
         #[cfg(not(target_os = "nacl"))]
         pub mod posix01 {
-            use types::os::arch::c95::{c_int, size_t};
+            use types::os::arch::c95::{c_int, c_short, size_t};
             use types::os::common::posix01::rlim_t;
 
             pub const F_DUPFD : c_int = 0;
@@ -3551,6 +3551,13 @@ pub mod consts {
             pub const GLOB_NOSPACE  : c_int = 1;
             pub const GLOB_ABORTED  : c_int = 2;
             pub const GLOB_NOMATCH  : c_int = 3;
+
+            pub const POLLIN   : c_short = 1 << 0;
+            pub const POLLPRI  : c_short = 1 << 1;
+            pub const POLLOUT  : c_short = 1 << 2;
+            pub const POLLERR  : c_short = 1 << 3;
+            pub const POLLHUP  : c_short = 1 << 4;
+            pub const POLLNVAL : c_short = 1 << 5;
 
             pub const POSIX_MADV_NORMAL : c_int = 0;
             pub const POSIX_MADV_RANDOM : c_int = 1;
@@ -3638,7 +3645,7 @@ pub mod consts {
         }
         #[cfg(target_os = "nacl")]
         pub mod posix01 {
-            use types::os::arch::c95::{c_int, size_t};
+            use types::os::arch::c95::{c_int, c_short, size_t};
             use types::os::common::posix01::rlim_t;
 
             pub const F_DUPFD : c_int = 0;
@@ -3661,6 +3668,13 @@ pub mod consts {
             pub const GLOB_NOSPACE  : c_int = 1;
             pub const GLOB_ABORTED  : c_int = 2;
             pub const GLOB_NOMATCH  : c_int = 3;
+
+            pub const POLLIN   : c_short = 1 << 0;
+            pub const POLLPRI  : c_short = 1 << 1;
+            pub const POLLOUT  : c_short = 1 << 2;
+            pub const POLLERR  : c_short = 1 << 3;
+            pub const POLLHUP  : c_short = 1 << 4;
+            pub const POLLNVAL : c_short = 1 << 5;
 
             pub const POSIX_MADV_NORMAL : c_int = 0;
             pub const POSIX_MADV_RANDOM : c_int = 1;
@@ -4301,7 +4315,7 @@ pub mod consts {
             pub const ELAST : c_int = 99;
         }
         pub mod posix01 {
-            use types::os::arch::c95::{c_int, size_t};
+            use types::os::arch::c95::{c_int, c_short, size_t};
             use types::os::common::posix01::rlim_t;
 
             pub const F_DUPFD : c_int = 0;
@@ -4324,6 +4338,13 @@ pub mod consts {
             pub const GLOB_NOSPACE  : c_int = -1;
             pub const GLOB_ABORTED  : c_int = -2;
             pub const GLOB_NOMATCH  : c_int = -3;
+
+            pub const POLLIN   : c_short = 1 << 0;
+            pub const POLLPRI  : c_short = 1 << 1;
+            pub const POLLOUT  : c_short = 1 << 2;
+            pub const POLLERR  : c_short = 1 << 3;
+            pub const POLLHUP  : c_short = 1 << 4;
+            pub const POLLNVAL : c_short = 1 << 5;
 
             pub const POSIX_MADV_NORMAL : c_int = 0;
             pub const POSIX_MADV_RANDOM : c_int = 1;
@@ -4767,7 +4788,7 @@ pub mod consts {
             pub const ELAST : c_int = 91; // must be equal to largest errno
         }
         pub mod posix01 {
-            use types::os::arch::c95::{c_int, size_t};
+            use types::os::arch::c95::{c_int, c_short, size_t};
             use types::os::common::posix01::rlim_t;
 
             pub const F_DUPFD : c_int = 0;
@@ -4796,6 +4817,13 @@ pub mod consts {
             pub const GLOB_ABORTED  : c_int = -2;
             pub const GLOB_NOMATCH  : c_int = -3;
             pub const GLOB_NOSYS : c_int = -4;
+
+            pub const POLLIN   : c_short = 1 << 0;
+            pub const POLLPRI  : c_short = 1 << 1;
+            pub const POLLOUT  : c_short = 1 << 2;
+            pub const POLLERR  : c_short = 1 << 3;
+            pub const POLLHUP  : c_short = 1 << 4;
+            pub const POLLNVAL : c_short = 1 << 5;
 
             pub const POSIX_MADV_NORMAL : c_int = 0;
             pub const POSIX_MADV_RANDOM : c_int = 1;
@@ -5196,7 +5224,7 @@ pub mod consts {
             pub const ELAST : c_int = 96;
         }
         pub mod posix01 {
-            use types::os::arch::c95::{c_int, size_t};
+            use types::os::arch::c95::{c_int, c_short, size_t};
             use types::os::common::posix01::rlim_t;
 
             pub const F_DUPFD : c_int = 0;
@@ -5225,6 +5253,13 @@ pub mod consts {
             pub const GLOB_ABORTED : c_int = -2;
             pub const GLOB_NOMATCH : c_int = -3;
             pub const GLOB_NOSYS : c_int = -4;
+
+            pub const POLLIN   : c_short = 1 << 0;
+            pub const POLLPRI  : c_short = 1 << 1;
+            pub const POLLOUT  : c_short = 1 << 2;
+            pub const POLLERR  : c_short = 1 << 3;
+            pub const POLLHUP  : c_short = 1 << 4;
+            pub const POLLNVAL : c_short = 1 << 5;
 
             pub const POSIX_MADV_NORMAL : c_int = 0;
             pub const POSIX_MADV_RANDOM : c_int = 1;
@@ -5621,7 +5656,7 @@ pub mod consts {
             pub const ELAST : c_int = 106;
         }
         pub mod posix01 {
-            use types::os::arch::c95::{c_int, size_t};
+            use types::os::arch::c95::{c_int, c_short, size_t};
             use types::os::common::posix01::rlim_t;
 
             pub const F_DUPFD : c_int = 0;
@@ -5646,6 +5681,13 @@ pub mod consts {
             pub const GLOB_NOSPACE  : c_int = -1;
             pub const GLOB_ABORTED  : c_int = -2;
             pub const GLOB_NOMATCH  : c_int = -3;
+
+            pub const POLLIN   : c_short = 1 << 0;
+            pub const POLLPRI  : c_short = 1 << 1;
+            pub const POLLOUT  : c_short = 1 << 2;
+            pub const POLLERR  : c_short = 1 << 3;
+            pub const POLLHUP  : c_short = 1 << 4;
+            pub const POLLNVAL : c_short = 1 << 5;
 
             pub const POSIX_MADV_NORMAL : c_int = 0;
             pub const POSIX_MADV_RANDOM : c_int = 1;
