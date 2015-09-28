@@ -238,8 +238,9 @@ pub mod types {
         pub mod common {
             pub mod posix01 {
                 use types::common::c95::{c_void};
-                use types::os::arch::c95::{c_char, c_ulong, size_t,
-                                                 time_t, suseconds_t, c_long};
+                use types::os::arch::c95::{c_char, c_int, c_long, c_short};
+                use types::os::arch::c95::{c_ulong};
+                use types::os::arch::c95::{size_t, suseconds_t, time_t};
 
                 #[cfg(not(target_os = "nacl"))]
                 pub type pthread_t = c_ulong;
@@ -258,6 +259,13 @@ pub mod types {
                     pub __unused3: *mut c_void,
                     pub __unused4: *mut c_void,
                     pub __unused5: *mut c_void,
+                }
+
+                #[repr(C)]
+                #[derive(Copy, Clone)] pub struct pollfd {
+                    pub fd: c_int,
+                    pub events: c_short,
+                    pub revents: c_short
                 }
 
                 #[repr(C)]
@@ -802,8 +810,8 @@ pub mod types {
         pub mod common {
             pub mod posix01 {
                 use types::common::c95::{c_void};
-                use types::os::arch::c95::{c_char, c_int, size_t,
-                                                 time_t, suseconds_t, c_long};
+                use types::os::arch::c95::{c_char, c_int, c_long, c_short};
+                use types::os::arch::c95::{size_t, suseconds_t, time_t};
                 use types::os::arch::c99::{uintptr_t};
 
                 pub type pthread_t = uintptr_t;
@@ -824,6 +832,13 @@ pub mod types {
                     pub __unused6: *mut c_void,
                     pub __unused7: *mut c_void,
                     pub __unused8: *mut c_void,
+                }
+
+                #[repr(C)]
+                #[derive(Copy, Clone)] pub struct pollfd {
+                    pub fd: c_int,
+                    pub events: c_short,
+                    pub revents: c_short
                 }
 
                 #[repr(C)]
@@ -1163,8 +1178,8 @@ pub mod types {
         pub mod common {
             pub mod posix01 {
                 use types::common::c95::{c_void};
-                use types::os::arch::c95::{c_char, c_int, size_t,
-                                                 time_t, suseconds_t, c_long};
+                use types::os::arch::c95::{c_char, c_int, c_long, c_short};
+                use types::os::arch::c95::{size_t, suseconds_t, time_t};
                 use types::os::arch::c99::{uintptr_t};
 
                 pub type pthread_t = uintptr_t;
@@ -1185,6 +1200,13 @@ pub mod types {
                     pub __unused6: *mut c_void,
                     pub __unused7: *mut c_void,
                     pub __unused8: *mut c_void,
+                }
+
+                #[repr(C)]
+                #[derive(Copy, Clone)] pub struct pollfd {
+                    pub fd: c_int,
+                    pub events: c_short,
+                    pub revents: c_short
                 }
 
                 #[repr(C)]
@@ -1430,8 +1452,8 @@ pub mod types {
         pub mod common {
             pub mod posix01 {
                 use types::common::c95::{c_void};
-                use types::os::arch::c95::{c_char, c_int, size_t,
-                                                 time_t, suseconds_t, c_long};
+                use types::os::arch::c95::{c_char, c_int, c_long, c_short};
+                use types::os::arch::c95::{size_t, suseconds_t, time_t};
                 use types::os::arch::c99::{uintptr_t};
 
                 pub type pthread_t = uintptr_t;
@@ -1487,6 +1509,13 @@ pub mod types {
                     pub __unused7: *mut c_void,
                     pub __unused8: *mut c_void,
                     pub __unused9: *mut c_void,
+                }
+
+                #[repr(C)]
+                #[derive(Copy, Clone)] pub struct pollfd {
+                    pub fd: c_int,
+                    pub events: c_short,
+                    pub revents: c_short
                 }
 
                 #[repr(C)]
@@ -2199,8 +2228,8 @@ pub mod types {
         pub mod common {
             pub mod posix01 {
                 use types::common::c95::c_void;
-                use types::os::arch::c95::{c_char, c_int, size_t, time_t};
-                use types::os::arch::c95::{suseconds_t, c_long};
+                use types::os::arch::c95::{c_char, c_int, c_long, c_short};
+                use types::os::arch::c95::{size_t, suseconds_t, time_t};
                 use types::os::arch::c99::{uintptr_t};
 
                 pub type pthread_t = uintptr_t;
@@ -2221,6 +2250,13 @@ pub mod types {
                     pub __unused6: *mut c_void,
                     pub __unused7: *mut c_void,
                     pub __unused8: *mut c_void,
+                }
+
+                #[repr(C)]
+                #[derive(Copy, Clone)] pub struct pollfd {
+                    pub fd: c_int,
+                    pub events: c_short,
+                    pub revents: c_short
                 }
 
                 #[repr(C)]
