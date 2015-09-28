@@ -136,6 +136,7 @@ pub use funcs::bsd43::*;
 #[cfg(unix)] pub use funcs::posix01::stat_::*;
 #[cfg(unix)] pub use funcs::posix01::unistd::*;
 #[cfg(unix)] pub use funcs::posix01::resource::*;
+#[cfg(unix)] pub use funcs::posix01::poll::*;
 
 
 #[cfg(windows)] pub use funcs::extra::kernel32::*;
@@ -6685,6 +6686,15 @@ pub mod funcs {
                 pub fn setrlimit(resource: c_int, rlim: *const rlimit) -> c_int;
                 #[cfg_attr(target_os = "netbsd", link_name = "__getrusage50")]
                 pub fn getrusage(resource: c_int, usage: *mut rusage) -> c_int;
+            }
+        }
+
+        pub mod poll {
+            use types::os::arch::c95::c_int;
+            use types::os::common::posix01::{pollfd, nfds_t};
+            extern {
+                pub fn poll(fds: *mut pollfd, nfds: nfds_t, timeout: c_int)
+                            -> c_int;
             }
         }
     }
