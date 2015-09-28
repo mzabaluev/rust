@@ -268,6 +268,8 @@ pub mod types {
                     pub revents: c_short
                 }
 
+                pub type nfds_t = c_ulong;
+
                 #[repr(C)]
                 #[derive(Copy, Clone)] pub struct timeval {
                     pub tv_sec: time_t,
@@ -811,6 +813,7 @@ pub mod types {
             pub mod posix01 {
                 use types::common::c95::{c_void};
                 use types::os::arch::c95::{c_char, c_int, c_long, c_short};
+                use types::os::arch::c95::{c_uint};
                 use types::os::arch::c95::{size_t, suseconds_t, time_t};
                 use types::os::arch::c99::{uintptr_t};
 
@@ -840,6 +843,8 @@ pub mod types {
                     pub events: c_short,
                     pub revents: c_short
                 }
+
+                pub type nfds_t = c_uint;
 
                 #[repr(C)]
                 #[derive(Copy, Clone)] pub struct timeval {
@@ -1179,6 +1184,7 @@ pub mod types {
             pub mod posix01 {
                 use types::common::c95::{c_void};
                 use types::os::arch::c95::{c_char, c_int, c_long, c_short};
+                use types::os::arch::c95::{c_uint};
                 use types::os::arch::c95::{size_t, suseconds_t, time_t};
                 use types::os::arch::c99::{uintptr_t};
 
@@ -1208,6 +1214,8 @@ pub mod types {
                     pub events: c_short,
                     pub revents: c_short
                 }
+
+                pub type nfds_t = c_uint;
 
                 #[repr(C)]
                 #[derive(Copy, Clone)] pub struct timeval {
@@ -1453,6 +1461,7 @@ pub mod types {
             pub mod posix01 {
                 use types::common::c95::{c_void};
                 use types::os::arch::c95::{c_char, c_int, c_long, c_short};
+                use types::os::arch::c95::{c_uint};
                 use types::os::arch::c95::{size_t, suseconds_t, time_t};
                 use types::os::arch::c99::{uintptr_t};
 
@@ -1517,6 +1526,8 @@ pub mod types {
                     pub events: c_short,
                     pub revents: c_short
                 }
+
+                pub type nfds_t = c_uint;
 
                 #[repr(C)]
                 #[derive(Copy, Clone)] pub struct timeval {
@@ -2229,6 +2240,7 @@ pub mod types {
             pub mod posix01 {
                 use types::common::c95::c_void;
                 use types::os::arch::c95::{c_char, c_int, c_long, c_short};
+                use types::os::arch::c95::{c_uint};
                 use types::os::arch::c95::{size_t, suseconds_t, time_t};
                 use types::os::arch::c99::{uintptr_t};
 
@@ -2258,6 +2270,8 @@ pub mod types {
                     pub events: c_short,
                     pub revents: c_short
                 }
+
+                pub type nfds_t = c_uint;
 
                 #[repr(C)]
                 #[derive(Copy, Clone)] pub struct timeval {
