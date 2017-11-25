@@ -122,7 +122,15 @@ impl<T: 'static + ?Sized > Any for T {
 #[stable(feature = "rust1", since = "1.0.0")]
 impl fmt::Debug for Any {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.pad("Any")
+        use fmt::Debug;
+
+        if let Some(s) = self.downcast_ref::<&'static str>() {
+            Debug::fmt(*s, f)
+        } else if let Some(s) = self.downcast_ref::<String>() {
+            Debug::fmt(s.as_str(), f)
+        } else {
+            f.pad("Any")
+        }
     }
 }
 
@@ -132,7 +140,15 @@ impl fmt::Debug for Any {
 #[stable(feature = "rust1", since = "1.0.0")]
 impl fmt::Debug for Any + Send {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.pad("Any")
+        use fmt::Debug;
+
+        if let Some(s) = self.downcast_ref::<&'static str>() {
+            Debug::fmt(*s, f)
+        } else if let Some(s) = self.downcast_ref::<String>() {
+            Debug::fmt(s.as_str(), f)
+        } else {
+            f.pad("Any")
+        }
     }
 }
 
